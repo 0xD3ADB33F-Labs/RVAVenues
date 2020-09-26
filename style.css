@@ -1,3 +1,28 @@
 body {
     font-family: 'New Rocker', cursive;
+    background-color: black;
+}
+
+header {
+    padding: 40;
+    align-content: center;
+    background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+}
+
+#wel {
+    text-align: center;
+}
+
+.welcome {
+    padding: 20;
+    align-content: center;
+    background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
 }
