@@ -26,3 +26,7 @@ p {
     align-content: center;
     background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
 }
+
+.modal {
+    background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
+}
