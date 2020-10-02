@@ -30,6 +30,9 @@
                             <button data-target="modal1" class="waves-effect waves-dark btn-large btn-floating modal-trigger"><i class="fas fa-play-circle"></i></button>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="previous-search"></div>
+                    </div>
                     <!--Music will stream dynamically to this tag-->
                     <audio>
                         <source id="music-play">
@@ -37,24 +40,22 @@
                     
                 </div>
             </div>
-
+            <!--modal that is targeted by our button, will be populated by our spotify api call if songs have multiple results-->
             <div id="modal1" class="modal bottom-sheet">
                 <div class="modal-content">
                   <h4>Did you mean....?</h4>
-                  <p></p>
+                </div>
+                <div class="track-suggestion">
+                    <p class="track-name"></p>
+                    <p class="track-artist"></p>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col s12 welcome" id="venue-info">
-                    <h4>Venue Name: </h4>
-                    <p>Venue Genre: </p>
-                    <p>Recent Shows: </p>
-                    <p>Upcoming Shows: </p>
-                    <p>Venue Food: </p>
-                    <p>Venue Reviews: </p>
-                    <div class="google-map"></div>
-
+            <!--div container that will be populated with information from our yelp API, hidden on initial page load-->
+            <div class="row hide" id="venue-info-template">
+                <div class="col s12 welcome">
+                    <h4 class="venue-name"></h4>
+                    <a class="yelp-link"></a>
+                    <p class="phone-num"></p>
                 </div>
             </div>
         </div>
