@@ -1,17 +1,26 @@
 const SearchButtonID = "#SearchButton";
 const SearchTrackID = "#SongName";
 const TrackListID = "#TracksList";
-const SpotifyAPIKey = "Bearer BQCwP3Ugei1u3DIiXQn9DUmrKUX4eZbxfZJIcTni6Ax8onlxLFTbnXVxo3xftF_8G_t0h_iJI3qXD0s_fzJbueUwrRowRdh161ssqhnnKRejKKeAlW9VGhY-tXlrjVQnSTyie-Ju7_kHs0I";
-const SpotifyHeader = {
+const SpotifyAPIKey = "Basic MDYyNjU3NTEyMDBhNGYxNmIzZWQ2ZTY5ZjRlY2M4MTY6YzAzNzg3OTZlNTZjNGI1YzkxMmJkMDYyZDNmMzU3ZmE=";
+var SpotifyAccessToken = "Bearer ahgfadhnjko;failhasduiofhbdjilsa";
+var SpotifyHeader = {
 	Accept: "application/json",
 	"Content-Type": "application/json",
-	Authorization: SpotifyAPIKey
+	Authorization: SpotifyAccessToken
 };
 
 var TrackToMatch = {};
 
-function GetTrackFeatures(id, obj){
-	
+function RetrievedTrackInfo(results){
+	console.log(results);
+}
+
+function GetTrackFeatures(id, obj) {
+	console.log(id);
+	var url = "https://api.spotify.com/v1/audio-features/"+id;
+	$.ajax(url, {
+		headers: SpotifyHeader
+	}).done(RetrievedTrackInfo);
 }
 
 function MatchVenueToSong(songid) {
@@ -23,6 +32,7 @@ function MatchVenueToSong(songid) {
 function songClicked(ev) {
 	ev.preventDefault();
 	console.log("Search: " + $(this).attr("data-song-id"));
+	GetTrackFeatures($(this).attr("data-song-id"));
 }
 
 function ProcessResults(results) {
@@ -57,9 +67,28 @@ function SearchSpotify(trackName) {
 	}).done(ProcessResults);
 }
 
+function RetrievedAccessToken(results) {
+	SpotifyHeader.Authorization = "Bearer " + results.access_token;
+	console.log(SpotifyHeader.Authorization);
+}
+
+function GetAccessToken() {
+	var url = "https://accounts.spotify.com/api/token";
+	$.ajax(url, {
+		method: "POST",
+		headers: {
+			Authorization: SpotifyAPIKey
+		},
+		data: "grant_type=client_credentials"
+	}).done(RetrievedAccessToken);
+
+}
+
 $(document).ready(function () {
 	$(SearchButtonID).click(function (ev) {
 		ev.preventDefault();
 		SearchSpotify($(SearchTrackID).val());
 	});
+
+	GetAccessToken();
 });
