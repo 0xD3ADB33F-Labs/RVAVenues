@@ -8,7 +8,6 @@ const SpotifyHeader = {
 	Authorization: SpotifyAPIKey
 };
 
-
 var TrackToMatch = {};
 
 function GetTrackFeatures(id, obj){
