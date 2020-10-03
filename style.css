@@ -1,0 +1,45 @@
+body {
+    font-family: 'New Rocker', cursive;
+    background-color: black;
+}
+
+header {
+    padding: 40;
+    align-content: center;
+    background-image: url(./Assets/rvatwo.jpg);
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    text-shadow: rgb(73, 73, 235) 5px 5px 5px;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+}
+
+#wel {
+    text-align: center;
+}
+
+.welcome {
+    padding: 20;
+    align-content: center;
+    background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
+}
+
+.modal {
+    background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
+}
+
+.searched {
+    padding: 2px;
+    margin: 5px;
+}
