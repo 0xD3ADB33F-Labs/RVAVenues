@@ -56,8 +56,8 @@ p {
     margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
-    width: auto;
-    height: auto;
+    width: 200px;
+    height: 200px;
     align-content: center;
     border: solid black 2px;
     box-shadow:  rgb(73, 73, 235) 5px 5px 5px;

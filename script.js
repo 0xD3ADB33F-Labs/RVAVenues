@@ -36,6 +36,7 @@ function getVenueInfo(venueName) {
         newVenue.find("#venueUrl").attr("href", response.url);
         newVenue.find("#venueName").text(response.name);
         newVenue.find("#venueNum").text(response.phone);
+        newVenue.find("#venuePhoto").attr("src", response.image_url)
         newVenue.removeClass("hide");
         $("#content").append(newVenue);
 
