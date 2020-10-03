@@ -5,6 +5,7 @@ body {
 
 header {
     padding: 40;
+    margin-bottom: 20px;
     align-content: center;
     background-image: url(./Assets/rvatwo.jpg);
     min-height: 100%;
@@ -15,6 +16,7 @@ header {
     -o-background-size: cover;
     text-shadow: rgb(73, 73, 235) 5px 5px 5px;
     -webkit-font-smoothing: antialiased;
+    border: solid darkslategray 2px;
 }
 
 h1 {
