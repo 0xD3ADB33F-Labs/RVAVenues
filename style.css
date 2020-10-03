@@ -43,3 +43,36 @@ p {
     padding: 2px;
     margin: 5px;
 }
+
+#venueURL {
+    margin: 5px;
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+#venuePhoto {
+    display: block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: auto;
+    align-content: center;
+    border: solid black 2px;
+    box-shadow:  rgb(73, 73, 235) 5px 5px 5px;
+}
+
+#venueName {
+    color: black;
+    text-shadow: rgb(73, 73, 235) 5px 5px 5px;
+    text-align: center;
+}
+
+#venueName:hover {
+    color: rgb(77, 1, 77);
+}
+
+#venueNum {
+    text-align: center;
+}
