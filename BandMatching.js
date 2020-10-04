@@ -13,6 +13,12 @@ var TrackToMatch = {};
 
 function RetrievedTrackInfo(results){
 	console.log(results);
+
+	for(var i = 0; i<VenueList.length; i++){
+		//TODO: Compare song attributes against Venue attributes.
+	}
+
+	SortAndDisplay();
 }
 
 function GetTrackFeatures(id, obj) {
