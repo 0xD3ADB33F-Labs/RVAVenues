@@ -79,10 +79,27 @@ p {
     text-align: center;
 }
 
-#album-art {
-    height: 50px;
-    width: 50px;
+.track-box {
     border: solid black 2px;
-    box-shadow:  rgb(73, 73, 235) 5px 5px 5px;
     margin: 10px;
+    padding: 10px;
+    box-shadow:  rgb(73, 73, 235) 5px 5px 5px;
+}
+
+#album-art {
+    height: 75px;
+    width: 75px;
+    border: solid black 2px;
+    margin: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#track-name {
+    text-align: center;
+}
+
+#track-artist {
+    text-align: center;
 }
