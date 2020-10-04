@@ -10,8 +10,8 @@
     
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="main.js"></script>
-    <script src="./script.js"></script>
+    <script src="./YelpHandler.js"></script>
+    <script src="BandMatching.js"></script>
     <title>RVA Venues</title>
 </head>
 <body>
@@ -32,7 +32,7 @@
                             <input placeholder="Song Name" id="user-song" type="text" class="validate">
                         </div>
                         <div class="col s3">
-                            <button data-target="modal1" class="waves-effect waves-dark btn-large btn-floating modal-trigger"><i class="fas fa-play-circle"></i></button>
+                            <button id="SearchButton" data-target="Track-Options" class="waves-effect waves-dark btn-large btn-floating modal-trigger"><i class="fas fa-play-circle"></i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -46,14 +46,14 @@
                 </div>
             </div>
             <!--modal that is targeted by our button, will be populated by our spotify api call if songs have multiple results-->
-            <div id="modal1" class="modal bottom-sheet">
+            <div id="Track-Options" class="modal bottom-sheet">
                 <div class="modal-content">
                   <h4>Did you mean....?</h4>
                 </div>
-                <div class="track-suggestion">
-                    <img class="album-art">
-                    <p class="track-name"></p>
-                    <p class="track-artist"></p>
+                <div id="track-suggestion-template" class="hide">
+                    <img id="album-art">
+                    <p id="track-name"></p>
+                    <p id="track-artist"></p>
                 </div>
             </div>
             <!--div container that will be populated with information from our yelp API, hidden on initial page load-->

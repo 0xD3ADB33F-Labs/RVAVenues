@@ -1,6 +1,6 @@
 const SearchButtonID = "#SearchButton";
-const SearchTrackID = "#SongName";
-const TrackListID = "#TracksList";
+const SearchTrackID = "#user-song";
+const TrackListID = "#Track-Options";
 const SpotifyAPIKey = "Basic MDYyNjU3NTEyMDBhNGYxNmIzZWQ2ZTY5ZjRlY2M4MTY6YzAzNzg3OTZlNTZjNGI1YzkxMmJkMDYyZDNmMzU3ZmE=";
 var SpotifyAccessToken = "Bearer ahgfadhnjko;failhasduiofhbdjilsa";
 var SpotifyHeader = {
@@ -8,6 +8,10 @@ var SpotifyHeader = {
 	"Content-Type": "application/json",
 	Authorization: SpotifyAccessToken
 };
+
+$(document).ready(function () {
+	$(".modal").modal();
+})
 
 var TrackToMatch = {};
 
@@ -42,7 +46,6 @@ function songClicked(ev) {
 }
 
 function ProcessResults(results) {
-	$(TrackListID).empty();
 	console.log(results);
 	var trackArray = results.tracks.items;
 	for (var i = 0; i < trackArray.length; i++) {
@@ -55,14 +58,13 @@ function ProcessResults(results) {
 				artists += ", " + track.artists[k].name;
 			}
 		}
-		var songString = `${track.name} : ${artists}`;
-		var listItem = $("<li>");
-		var buttonItem = $("<button>");
-		buttonItem.text(songString);
-		buttonItem.attr("data-song-id", track.id);
-		buttonItem.click(songClicked);
-		listItem.append(buttonItem);
-		$(TrackListID).append(listItem);
+		var newTrack = $("#track-suggestion-template").clone();
+		newTrack.attr("id", "track-info-" + track.id);
+		newTrack.find("#track-name").text(track.name);
+		newTrack.find("#track-artist").text(artists);
+		newTrack.find("#album-art").attr("src", track.album.images[0].url);
+		newTrack.removeClass("hide");
+		$("#Track-Options").append(newTrack);
 	}
 }
 
