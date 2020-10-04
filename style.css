@@ -78,3 +78,11 @@ p {
 #venueNum {
     text-align: center;
 }
+
+#album-art {
+    height: 50px;
+    width: 50px;
+    border: solid black 2px;
+    box-shadow:  rgb(73, 73, 235) 5px 5px 5px;
+    margin: 10px;
+}
