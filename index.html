@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="main.js"></script>
+    <script src="./script.js"></script>
+    <title>RVA Venues</title>
+</head>
+<body>
+    <header>
+        <h1>RVA Venues</h1>
+    </header>
+
+    <main>
+        <div id="content" class="container">
+            <!--first div that allows for users to search for a song from spotify and play it in browser-->
+            <div class="row">
+                <div class="col s12 welcome">
+                    <p id="wel">Welcome to RVA Venues, the site that lets you search for a song and find a local venue that caters to that genre of music!</p>
+                    <p id="wel">Simply enter a song below to get started!</p>
+                    <!--input field for song name-->
+                    <div class="row">
+                        <div class="input-field center-align col s6 col offset-s3">
+                            <input placeholder="Song Name" id="user-song" type="text" class="validate">
+                        </div>
+                        <div class="col s3">
+                            <button data-target="modal1" class="waves-effect waves-dark btn-large btn-floating modal-trigger"><i class="fas fa-play-circle"></i></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="previous-search"></div>
+                    </div>
+                    <!--Music will stream dynamically to this tag-->
+                    <audio>
+                        <source id="music-play">
+                    </audio>
+                    
+                </div>
+            </div>
+            <!--modal that is targeted by our button, will be populated by our spotify api call if songs have multiple results-->
+            <div id="modal1" class="modal bottom-sheet">
+                <div class="modal-content">
+                  <h4>Did you mean....?</h4>
+                </div>
+                <div class="track-suggestion">
+                    <img class="album-art">
+                    <p class="track-name"></p>
+                    <p class="track-artist"></p>
+                </div>
+            </div>
+            <!--div container that will be populated with information from our yelp API, hidden on initial page load-->
+            <div class="row hide" id="venue-info-template">
+                <div class="col s12 welcome">
+                    <img id="venuePhoto" src="">
+                    <a id="venueUrl" class="yelp-link">
+                        <h4 id="venueName" class="venue-name"></h4>
+                    </a>
+                    <p id="venueNum" class="phone-num"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

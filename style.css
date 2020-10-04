@@ -1,0 +1,80 @@
+body {
+    font-family: 'New Rocker', cursive;
+    background-color: black;
+}
+
+header {
+    padding: 40;
+    margin-bottom: 20px;
+    align-content: center;
+    background-image: url(./Assets/rvatwo.jpg);
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    text-shadow: rgb(73, 73, 235) 5px 5px 5px;
+    -webkit-font-smoothing: antialiased;
+    border: solid darkslategray 2px;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+}
+
+#wel {
+    text-align: center;
+}
+
+.welcome {
+    padding: 20;
+    align-content: center;
+    background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
+}
+
+.modal {
+    background-image: linear-gradient(to right, darkslategray, #7b9095, slategray,darkslategray );
+}
+
+.searched {
+    padding: 2px;
+    margin: 5px;
+}
+
+#venueURL {
+    margin: 5px;
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+#venuePhoto {
+    display: block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 200px;
+    align-content: center;
+    border: solid black 2px;
+    box-shadow:  rgb(73, 73, 235) 5px 5px 5px;
+}
+
+#venueName {
+    color: black;
+    text-shadow: rgb(73, 73, 235) 5px 5px 5px;
+    text-align: center;
+}
+
+#venueName:hover {
+    color: rgb(77, 1, 77);
+}
+
+#venueNum {
+    text-align: center;
+}
