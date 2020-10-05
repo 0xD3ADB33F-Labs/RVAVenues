@@ -18,9 +18,43 @@ var TrackToMatch = {};
 function RetrievedTrackInfo(results){
 	console.log(results);
 
-	for(var i = 0; i<VenueList.length; i++){
-		//TODO: Compare song attributes against Venue attributes.
+	var acousticDif = 0;
+	var danceDif = 0;
+	var energyDif = 0;
+	var instrumentalDif = 0;
+	var liveDif = 0;
+	var speechDif = 0;
+	var valenceDif = 0;
+
+
+
+	for(id in VenueList){
+		var venue = VenueList[id];
+		acousticDif = Math.abs(results.acousticness - venue.avgAcoustic);
+		danceDif = Math.abs(results.danceability - venue.avgDance);
+		energyDif = Math.abs(results.energy - venue.avgEnergy);
+		liveDif = Math.abs(results.liveness - venue.avgLive);
+		instrumentalDif = Math.abs(results.instrumentalness - venue.avgInstru);
+		speechDif = Math.abs(results.speechiness - venue.avgSpeech);
+		valenceDif = Math.abs(results.valence - venue. avgValence);
+		
+		console.log(acousticDif);
+
+
+		var Compatibiliy = 0;
+		Compatibiliy += acousticDif;
+		Compatibiliy += danceDif;
+		Compatibiliy += energyDif;
+		Compatibiliy += liveDif;
+		Compatibiliy += instrumentalDif;
+		Compatibiliy += speechDif;
+		Compatibiliy += valenceDif;
+		Compatibiliy /= 7;
+		venue.Compatibiliy = Compatibiliy;
+		console.log(venue.name + " : " + venue.Compatibiliy);
 	}
+
+
 
 	SortAndDisplay();
 }
@@ -41,8 +75,8 @@ function MatchVenueToSong(songid) {
 
 function songClicked(ev) {
 	ev.preventDefault();
-	console.log("Search: " + $(this).attr("data-song-id"));
-	GetTrackFeatures($(this).attr("data-song-id"));
+	console.log("Search: " + $(this).attr("data-track-id"));
+	GetTrackFeatures($(this).attr("data-track-id"));
 }
 
 function ProcessResults(results) {
@@ -59,11 +93,13 @@ function ProcessResults(results) {
 			}
 		}
 		var newTrack = $("#track-suggestion-template").clone();
-		newTrack.attr("id", "track-info-" + track.id);
+		newTrack.attr("id", "track-id-" + track.id);
+		newTrack.attr("data-track-id", track.id);
 		newTrack.find("#track-name").text(track.name);
 		newTrack.find("#track-artist").text(artists);
-		newTrack.find("#album-art").attr("src", track.album.images[0].url);
+		newTrack.find("#album-art").attr("src", track.album.images[2].url);
 		newTrack.removeClass("hide");
+		newTrack.on("click", songClicked);
 		$("#Track-Options").append(newTrack);
 	}
 }
