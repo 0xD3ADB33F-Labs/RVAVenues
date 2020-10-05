@@ -54,4 +54,11 @@ function getVenues(){
 $(document).ready(function(){
     currentIndex = 0;
     getVenues();
+
+
+function sortVenue(){
+    venueList.sort(function(a,b){return a-b});
+        for (i = 0; i < venueList.length; i++  )
+}
+
 });
