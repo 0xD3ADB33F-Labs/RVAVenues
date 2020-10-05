@@ -10,9 +10,10 @@ var YelpHeader = {
 };
 
 var currentYelpRequest = null;
+var YelpSearchNum = 0;
 var currentIndex = 0;
 
-function getVenueInfo(venueName) {
+function getVenueInfo(venueName, SearchNumber) {
     var richmond = "Richmond, VA"
     var url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${venueName}&location=${richmond}`
     currentYelpRequest = $.ajax({
@@ -20,6 +21,7 @@ function getVenueInfo(venueName) {
         method: "GET",
         headers: YelpHeader
     }).then(function (results) {
+        if(YelpSearchNum != SearchNumber) return;
         var response = results.businesses[0];
         getVenues();
         // var tRow = $("<tr>");
@@ -49,7 +51,7 @@ function getVenues() {
         currentYelpRequest.abort();
     }
     if (currentIndex < VenueList.length) {
-        getVenueInfo(VenueList[currentIndex].name)
+        getVenueInfo(VenueList[currentIndex].name, YelpSearchNum)
     }
     currentIndex++;
 
@@ -57,6 +59,7 @@ function getVenues() {
 
 $(document).ready(function () {
     currentIndex = 0;
+    YelpSearchNum++;
     getVenues();
 
 });
@@ -73,5 +76,6 @@ function SortAndDisplay() {
         }
     });
     currentIndex = 0;
+    YelpSearchNum++;
     getVenues();
 }
