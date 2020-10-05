@@ -81,9 +81,20 @@ p {
 
 .track-box {
     border: solid black 2px;
+    width: 350px;
     margin: 10px;
     padding: 10px;
     box-shadow:  rgb(73, 73, 235) 5px 5px 5px;
+}
+
+.track-box:hover {
+    border: solid rgb(73, 73, 235) 2px;
+    box-shadow: black 5px 5px 5px;
+}
+
+.track-box:active {
+    border: solid rgb(77, 1, 77) 2px;
+    box-shadow: none;
 }
 
 #album-art {
@@ -102,4 +113,13 @@ p {
 
 #track-artist {
     text-align: center;
+}
+
+
+@media only screen and (max-width: 800px){
+    .track-box {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
+    }
 }
