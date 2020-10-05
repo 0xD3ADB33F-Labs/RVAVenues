@@ -13,6 +13,8 @@ $(document).ready(function () {
 	$(".modal").modal();
 })
 
+var SearchHistory = [];
+
 var TrackToMatch = {};
 
 function RetrievedTrackInfo(results){
@@ -73,11 +75,53 @@ function MatchVenueToSong(songid) {
 
 }
 
+function historyClicked(ev){
+	ev.preventDefault();
+	GetTrackFeatures($(this).attr("data-track-id"));
+}
+
+function displayHistory(){
+	$(".previous-search").empty();
+	for(var i = 0; i<SearchHistory.length; i++){
+		var button = $("<button></button>");
+		button.text(SearchHistory[i].name);
+		button.attr("data-track-id", SearchHistory[i].songId);
+		button.addClass("waves-effect waves-dark btn-large searched");
+		button.on("click", historyClicked);
+		$(".previous-search").append(button);
+	}
+}
+
+function addToHistory(String, Id){
+	var histObj = {
+		name: String,
+		songId: Id
+	};
+
+	SearchHistory.unshift(histObj);
+
+	if (SearchHistory.length > 5){
+		SearchHistory = SearchHistory.slice(0,5);
+	}
+
+	localStorage.setItem("SearchHistory", JSON.stringify(SearchHistory));
+	displayHistory();
+}
+
+function loadHistory(){
+	if(localStorage.getItem("SearchHistory") != null){
+		SearchHistory = JSON.parse(localStorage.getItem("SearchHistory"));
+	}
+	displayHistory();
+}
+
 function songClicked(ev) {
 	ev.preventDefault();
 	$(".modal").modal('close');
 	console.log("Search: " + $(this).attr("data-track-id"));
 	GetTrackFeatures($(this).attr("data-track-id"));
+	var saveString = $(this).find("#track-name").text() + " | " + $(this).find("#track-artist").text();
+	addToHistory(saveString, $(this).attr("data-track-id"));
 }
 
 function ProcessResults(results) {
@@ -140,6 +184,6 @@ $(document).ready(function () {
 		ev.preventDefault();
 		SearchSpotify($(SearchTrackID).val());
 	});
-
+	loadHistory();
 	GetAccessToken();
 });
