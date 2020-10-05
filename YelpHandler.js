@@ -9,12 +9,13 @@ var YelpHeader = {
     Authorization: YelpAccessToken
 };
 
+var currentYelpRequest = null;
 var currentIndex = 0;
 
 function getVenueInfo(venueName) {
     var richmond = "Richmond, VA"
     var url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${venueName}&location=${richmond}`
-    $.ajax({
+    currentYelpRequest = $.ajax({
         url: url,
         method: "GET",
         headers: YelpHeader
@@ -44,6 +45,9 @@ function getVenueInfo(venueName) {
 }
 
 function getVenues() {
+    if(currentYelpRequest != null && currentYelpRequest.abort != null){
+        currentYelpRequest.abort();
+    }
     if (currentIndex < VenueList.length) {
         getVenueInfo(VenueList[currentIndex].name)
     }

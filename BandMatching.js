@@ -49,7 +49,7 @@ function RetrievedTrackInfo(results){
 		Compatibiliy += instrumentalDif;
 		Compatibiliy += speechDif;
 		Compatibiliy += valenceDif;
-		Compatibiliy /= 7;
+		Compatibiliy /= 7;	
 		venue.Compatibiliy = Compatibiliy;
 		console.log(venue.name + " : " + venue.Compatibiliy);
 	}
@@ -75,6 +75,7 @@ function MatchVenueToSong(songid) {
 
 function songClicked(ev) {
 	ev.preventDefault();
+	$(".modal").modal('close');
 	console.log("Search: " + $(this).attr("data-track-id"));
 	GetTrackFeatures($(this).attr("data-track-id"));
 }
@@ -105,6 +106,12 @@ function ProcessResults(results) {
 }
 
 function SearchSpotify(trackName) {
+	var trackboxes = $(".track-box");
+	trackboxes.each(function(){
+		if (!$(this).hasClass("hide")) {
+			$(this).remove();
+		}
+	});
 	var url = `https://api.spotify.com/v1/search?q=${trackName}&type=track&market=US&limit=20`;
 	$.ajax(url, {
 		headers: SpotifyHeader
