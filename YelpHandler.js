@@ -1,4 +1,4 @@
-const venueList = ["The BroadBerry", "The National", "The Camel", "Hippodrome Theater", "The Tin Pan", "Garden Groove Brewing", "Cary St. Cafe", "GwarBar", "Wonderland", "Banditos", "Cornerstone", "Bello's Lounge", "Havana", "Poe's Pub", "VMFA", "Boathouse", "Hardywood Brewery", "Godfreys", "Babes", "Kabana"]
+//const venueList = ["The BroadBerry", "The National", "The Camel", "Hippodrome Theater", "The Tin Pan", "Garden Groove Brewing", "Cary St. Cafe", "GwarBar", "Wonderland", "Banditos", "Cornerstone", "Bello's Lounge", "Havana", "Poe's Pub", "VMFA", "Boathouse", "Hardywood Brewery", "Godfreys", "Babes", "Kabana"]
 var yelpApiKey = "mAPx052gAYztT9R-6pG72_SDN7R82iInfK5o7Lb0xGp_lojHkWPjoW1kP3ZwO0pRTEZYjo2-yH6oRoObB4c4Zv67NHD3ywan9P5hP76TENGcxqGxWe5xUbeXsVVvX3Yx"
 var yelpClientId = "CMiogmoq_vGiUQIZ4ig3sA"
 var yelpURL = "https://api.yelp.com/v3/businesses/{id}?"
@@ -32,7 +32,7 @@ function getVenueInfo(venueName) {
         // $("tbody").append(tRow);
         console.log(response)
         var newVenue = $("#venue-info-template").clone();
-        newVenue.attr("id", "venue-info-"+response.alias);
+        newVenue.attr("id", "venue-info-" + response.alias);
         newVenue.find("#venueUrl").attr("href", response.url);
         newVenue.find("#venueName").text(response.name);
         newVenue.find("#venueNum").text(response.phone);
@@ -43,15 +43,31 @@ function getVenueInfo(venueName) {
     });
 }
 
-function getVenues(){
-    if(currentIndex < venueList.length){
-        getVenueInfo(venueList[currentIndex])
+function getVenues() {
+    if (currentIndex < VenueList.length) {
+        getVenueInfo(VenueList[currentIndex].name)
     }
     currentIndex++;
 
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
     currentIndex = 0;
     getVenues();
+
 });
+
+function SortAndDisplay() {
+    VenueList.sort(function (a, b) {
+        return (a.Compatibiliy - b.Compatibiliy)
+    });
+    console.log(VenueList);
+
+    $(".venue-box").each(function () {
+        if (!$(this).hasClass("hide")) {
+            $(this).remove();
+        }
+    });
+    currentIndex = 0;
+    getVenues();
+}
